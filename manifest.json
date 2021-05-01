@@ -1,0 +1,46 @@
+{
+    "description": "Check for new appointment date for US Visa",
+    "manifest_version": 2,
+    "name": "ALVisa",
+    "version": "1.0",
+    "icons": {
+        "48": "icons/icon.png"
+    },
+    
+    "permissions": [
+        "tabs",
+        "storage",
+        "webRequest",
+        "<all_urls>"
+    ],
+
+    "options_ui": {
+        "page": "settings/options.html"
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://ais.usvisa-info.com/*/niv/users/sign_in"],
+            "js": ["content_scripts/login.js"]
+        },
+        {
+            "matches": ["*://ais.usvisa-info.com/*/niv/groups/*"],
+            "js": ["content_scripts/groups.js"]
+        },
+        {
+            "matches": ["*://ais.usvisa-info.com/*/niv/schedule/*/continue_actions"],
+            "js": ["content_scripts/schedule.js"]
+        },
+        {
+            "matches": ["*://ais.usvisa-info.com/*/niv/schedule/*/appointment"],
+            "js": [
+                "content_scripts/email.min.js",
+                "content_scripts/appointment.js"
+            ]
+        }
+    ]
+}
