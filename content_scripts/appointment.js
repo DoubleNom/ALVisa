@@ -50,16 +50,7 @@ browser.storage.local.get("meeting")
     .then(result => {
         saved_meeting = new Date(result["meeting"]);
         console.log(`Saved\t appointment: ${saved_meeting.toDateString()}`);
-        var card = null;
-        for (let element of document.getElementsByClassName("card")) {
-            if (element.innerText.includes(sentence[lang])) {
-                card = element;
-                break;
-            }
-        }
-        if (!card) {
-            console.error("Error: Failed to find date")
-        }
+        var card = document.getElementsByClassName("consular-appt")[0];
         planned_meeting = new Date(card.innerText.match(/\d{1,2} \w+, \d{4}/)[0]);
         console.log(`Current\t appointment: ${planned_meeting.toDateString()}`)
         if (planned_meeting.toDateString() != saved_meeting.toDateString()) {
