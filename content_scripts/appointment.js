@@ -52,6 +52,7 @@ browser.storage.local.get("meeting")
         saved_meeting = new Date(result["meeting"]);
         console.log(`Saved\t appointment: ${saved_meeting.toDateString()}`);
         var card = document.getElementsByClassName("consular-appt")[0];
+        if (!card) return 
         planned_meeting = new Date(card.innerText.match(/\d{1,2} \w+, \d{4}/)[0]);
         console.log(`Current\t appointment: ${planned_meeting.toDateString()}`);
         if (planned_meeting.toDateString() != saved_meeting.toDateString()) {
@@ -69,7 +70,12 @@ browser.storage.local.get("meeting")
     })
 
 // GET APPOINTMENT DAYS
-const json_url = "/days/44.json?appointments[expedite]=false";
+const country = {
+    "en-fr": "44",
+    "fr-fr": "44",
+    "en-be": "42"
+}
+const json_url = "/days/" + country[lang] + ".json?appointments[expedite]=false";
 console.log(document.URL + json_url);
 var earliest_meeting = null;
 fetch(document.URL + json_url)

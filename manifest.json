@@ -2,7 +2,7 @@
     "description": "Check for new appointment date for US Visa",
     "manifest_version": 2,
     "name": "ALVisa",
-    "version": "1.1",
+    "version": "1.1.1",
     "icons": {
         "48": "icons/icon.png"
     },
