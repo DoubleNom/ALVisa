@@ -7,6 +7,7 @@ const emailjsTemplateId = "template_9a7e712";
 
 var sentence = {
     "en-fr": "Consulate Appointment",
+    "en-be": "Consulate Appointment",
     "fr-fr": "Rendez-vous au consulat"
 };
 var lang = document.URL.match(/\/(\w{2}-\w{2})\//i)[1];
